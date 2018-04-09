@@ -17,7 +17,7 @@
 	<div class="jumbotron">
 		<table ng-if="contatos.length > 0" class="table table-sm">
 			<h3 ng-bind="app"></h3>
-			<caption ng-bind="app"></caption>
+			<!--><caption ng-bind="app"></caption><-->
 			<tr>
 				<th><input type="checkbox" ng-click=headerCheckBoxClick(contatos)></th>
 				<th>Nome</th>
@@ -36,9 +36,9 @@
 		<h6>
 		<!-- AREA DE TESTES! -->
 
-		{{contatos}} 
-		{{contatoForm.$valid}}
-		{{contatoForm.nome.$valid}}
+		{{contatos}}<br>
+		{{contatoForm.$valid}}<br>
+		{{contatoForm.nome.$valid}}<br>
 
 
 		</h6>
