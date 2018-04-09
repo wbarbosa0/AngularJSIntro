@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html ng-app="listaTelefonica">
+<meta charset="utf-8" />
+<head>
+	<title>Lista Telefônica</title>
+	<link rel="stylesheet" type="text/css" href="libs/bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/app.css">
+
+	<script src=libs/angular/angular.js></script>
+	<script src=libs/angular/angular-messages.js></script>
+	<script>
+		angular.module("listaTelefonica", ["ngMessages"]);
+	</script>
+	<script src=controllers/listaTelefonicaCtrl.js></script>
+</head>
+<body ng-controller="listaTelefonicaCtrl">
+	<div class="jumbotron">
+		<table ng-if="contatos.length > 0" class="table table-sm">
+			<h3 ng-bind="app"></h3>
+			<caption ng-bind="app"></caption>
+			<tr>
+				<th><input type="checkbox" ng-click=headerCheckBoxClick(contatos)></th>
+				<th>Nome</th>
+				<th>Telefone</th>
+				<th>Operadora</th>
+			</tr>
+			<!-- Não pode usar classes com - no nome neste tipo de expressão utilzada no ng-class a seguir... -->
+			<tr ng-class="{selecionado: contato.selecionado}" ng-repeat="contato in contatos">
+				<td><input type="checkbox" ng-model=contato.selecionado ></td>
+				<td>{{contato.nome}}</td>
+				<td>{{contato.telefone}}</td>
+				<td>{{contato.operadora.nome}}</td>
+			</tr>
+		</table>
+		<hr/>
+		<h6>
+		<!-- AREA DE TESTES! -->
+
+		{{contatos}} 
+		{{contatoForm.$valid}}
+		{{contatoForm.nome.$valid}}
+
+
+		</h6>
+		<hr/>
+		<form name="contatoForm">
+			<input class="form-control" name="nome" ng-required=true ng-minlength=5 ng-model=contato.nome placeholder="Nome">
+			<span class="form-control badge badge-danger" ng-show="contatoForm.nome.$invalid">Inválido!</span>
+			<input class="form-control" name="telefone" ng-required=true ng-pattern="/^(9[1-9]|[2-5])[0-9]{3}\-[0-9]{4}$/" ng-model=contato.telefone placeholder="Telefone">
+			<select class="form-control" nome="operadora" ng-required=true ng-model=contato.operadora ng-options="operadora.nome for operadora in operadoras">
+
+			<!--
+			<select class="form-control" ng-model=contato.operadora ng-options="operadora.csp as operadora.nome for operadora in operadoras">
+			-->
+
+				<option value="">Selecione uma operadora</option>
+			</select>
+			<button class="btn btn-primary btn-block" ng-click=adicionarContato(contato) ng-disabled="contatoForm.$invalid">Adicionar contato</button>
+			<button class="btn btn-danger btn-block" ng-click=apagarContatos(contatos) ng-show=isAnyContatoSelecionado(contatos)>Apagar contatos</button>
+			<!-- ng-click=apagarContatos(contatos) -->
+		</form>
+	</div>
+</body>
+</html>

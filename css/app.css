@@ -1,0 +1,23 @@
+.jumbotron {
+	text-align: center;
+	margin-top: 10px;
+	margin-left: 10%;
+	margin-right: 10%;
+}
+.table{
+	margin-bottom: 10px;
+}
+.form-control{
+	margin-bottom: 5px;
+}
+.selecionado{
+	background-color:navy;
+	color:white;
+}
+caption { 
+	display: table-caption;
+	text-align: center;
+}
+.invalido{
+	background-color:lightcoral;
+}
