@@ -43,6 +43,4 @@ angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function($sc
 			return contato.selecionado;
 		})
 	}
-
-
 })
