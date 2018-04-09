@@ -20,12 +20,12 @@
 			<!--><caption ng-bind="app"></caption><-->
 			<tr>
 				<th><input type="checkbox" ng-click=headerCheckBoxClick(contatos)></th>
-				<th>Nome</th>
-				<th>Telefone</th>
-				<th>Operadora</th>
+				<th><a ng-click=ordenarContatosNaTable("nome")>Nome</a></th>
+				<th><a ng-click=ordenarContatosNaTable("telefone")>Telefone</a></th>
+				<th><a >Operadora</a></th>
 			</tr>
 			<!-- Não pode usar classes com - no nome neste tipo de expressão utilzada no ng-class a seguir... -->
-			<tr ng-class="{selecionado: contato.selecionado}" ng-repeat="contato in contatos">
+			<tr ng-class="{selecionado: contato.selecionado}" ng-repeat="contato in contatos | orderBy:"ordenarContatosNaTable(campo)|direcaoOrdenacaoTabela">
 				<td><input type="checkbox" ng-model=contato.selecionado ></td>
 				<td>{{contato.nome}}</td>
 				<td>{{contato.telefone}}</td>
