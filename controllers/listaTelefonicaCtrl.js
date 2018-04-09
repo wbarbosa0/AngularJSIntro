@@ -45,7 +45,7 @@ angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function($sc
 	}
 
 	$scope.ordenarContatosNaTable = function(campo){
-		scope.criterioOrdenacaoTabela = campo;
-		scope.direcaoOrdenacaoTabela = !$scope.direcaoOrdenacaoTabela
+		$scope.criterioOrdenacaoTabela = campo;
+		$scope.direcaoOrdenacaoTabela = ! $scope.direcaoOrdenacaoTabela
 	}
 })
