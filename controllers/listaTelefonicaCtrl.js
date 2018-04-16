@@ -24,15 +24,13 @@ angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function($sc
 	];
 
  	var carregarContatos = function(){
-		$http.get("http://localhost:24375/contatos").success(function (data,status){
-			$scope.contatos = data;
+		$http.get("http://localhost:24375/contatos").then(function (result, status){
+			$scope.contatos = result.data;
 		})
 	};
 
 	var carregarOperadoras = function(){
-		$http.get("http://127.0.0.1:24375/operadoras").then(function (result,status){
-			console.log(result.data)
-			console.log(result)
+		$http.get("http://127.0.0.1:24375/operadoras").then(function (result, status){
 			$scope.operadoras = result.data;
 	    });
 	};
