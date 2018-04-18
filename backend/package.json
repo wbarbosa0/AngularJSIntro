@@ -1,0 +1,23 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "node_backend.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body": "^5.1.0",
+    "co-body": "^5.1.1",
+    "connect": "^3.6.6",
+    "error-handler": "^1.0.0",
+    "express": "^4.16.3",
+    "raw-body": "^2.3.2",
+    "serve-static": "^1.13.2"
+  },
+  "devDependencies": {
+    "body-parser": "^1.18.2"
+  }
+}

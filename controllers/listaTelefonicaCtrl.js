@@ -18,26 +18,33 @@ angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function($sc
 	//$scope.contatos = [];
 
 	$scope.contatos = [
-		{nome:"Mario",telefone:"98765-4321", operadora:$scope.operadoras[Math.floor(Math.random() * $scope.operadoras.length)]},
-		{nome:"Antônio",telefone:"93456-3923", operadora:$scope.operadoras[Math.floor(Math.random() * $scope.operadoras.length)]},
-		{nome:"Carla",telefone:"97654-8234", operadora:$scope.operadoras[Math.floor(Math.random() * $scope.operadoras.length)]}
+		//{nome:"Mario",telefone:"98765-4321", operadora:$scope.operadoras[Math.floor(Math.random() * $scope.operadoras.length)]},
+		//{nome:"Antônio",telefone:"93456-3923", operadora:$scope.operadoras[Math.floor(Math.random() * $scope.operadoras.length)]},
+		//{nome:"Carla",telefone:"97654-8234", operadora:$scope.operadoras[Math.floor(Math.random() * $scope.operadoras.length)]}
 	];
 
  	var carregarContatos = function(){
-		$http.get("http://localhost:24375/contatos").then(function (result, status){
+		$http.get("http://127.0.0.1:24375/contatos").then(function (result, status){
 			$scope.contatos = result.data;
 		})
 	};
 
 	var carregarOperadoras = function(){
 		$http.get("http://127.0.0.1:24375/operadoras").then(function (result, status){
+			console.log(result.data);
 			$scope.operadoras = result.data;
 	    });
 	};
 
 	$scope.adicionarContato = function(contato){
-		$scope.contatos.push(angular.copy(contato));
-		delete $scope.contato;
+		//$scope.contatos.push(angular.copy(contato));
+		console.log(contato)
+		$http.post("http://127.0.0.1:24375/contatos", contato).then(function(result){
+			delete $scope.contato;
+			$scope.contatoForm.$setPristine();
+			carregarContatos();
+		});
+
 	}
 
 	$scope.apagarContatos = function(contatos){
@@ -64,4 +71,6 @@ angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function($sc
 	}
 
 	carregarOperadoras()
+    carregarContatos()
+
 })
